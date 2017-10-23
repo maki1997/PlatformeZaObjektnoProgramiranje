@@ -1,0 +1,6 @@
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\bin\Debug\POP-12.exe.config
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\obj\Debug\POP-12.csprojResolveAssemblyReference.cache
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\bin\Debug\POP-12.exe
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\bin\Debug\POP-12.pdb
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\obj\Debug\POP-12.exe
+c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\obj\Debug\POP-12.pdb
