@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 namespace POP_12.Model
 {
+    [Serializable]
+
     public class ProdajaNamestaja
     {
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace POP_12.Model
 {
+    [Serializable]
     public class Salon
     {
         public int Id { get; set; }
@@ -14,7 +15,7 @@ namespace POP_12.Model
         public string Email { get; set; }
         public string Websajt { get; set; }
         public int PIB { get; set; }
-        public int MaticniBroj { get; set; }
+        public long MaticniBroj { get; set; }
         public string BrojZiroRacuna { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace POP_12.Model
 {
+    [Serializable]
     public class Namestaj
     {
         public int Id { get; set; }

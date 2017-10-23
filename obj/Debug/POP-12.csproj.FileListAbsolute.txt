@@ -4,3 +4,9 @@ c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\bin\Debug
 c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\bin\Debug\POP-12.pdb
 c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\obj\Debug\POP-12.exe
 c:\users\sf12-2016\documents\visual studio 2015\Projects\POP-12\POP-12\obj\Debug\POP-12.pdb
+S:\pop\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.exe.config
+S:\pop\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.exe
+S:\pop\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.pdb
+S:\pop\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.exe
+S:\pop\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.pdb
+S:\pop\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.csprojResolveAssemblyReference.cache

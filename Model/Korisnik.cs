@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace POP_12.Model
-{  
-    public enum {
+{
+    [Serializable]
+    public enum TipKorisnika {
         Administrator,
         Prodavac
     }
-    public class Class1
+    public class Korisnik
     {
 
         public int Id { get; set; }
