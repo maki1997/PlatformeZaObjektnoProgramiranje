@@ -1,4 +1,5 @@
 ﻿using POP_12.Model;
+using POP_12.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace POP_12.Model
 {
 
 }
-    public class Program
-    {
+public class Program
+{
     static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>();
-        static void Main (string[] args)
+    static void Main(string[] args)
     {
         Salon s1 = new Salon()
         {
@@ -43,11 +44,11 @@ namespace POP_12.Model
 
         });
 
-        Console.WriteLine ($"Dobrodosli u salon namestaja { s1.Naziv }.");
-            IspisiGlavniMeni();
+        Console.WriteLine($"Dobrodosli u salon namestaja { s1.Naziv }.");
+        IspisiGlavniMeni();
         Console.ReadLine();
 
-        }
+    }
     private static void IspisiGlavniMeni()
     {
         int izbor = 0;
@@ -57,10 +58,11 @@ namespace POP_12.Model
             Console.WriteLine("===== GLAVNI MENI =====");
             Console.WriteLine("1. Rad sa namestajem");
             Console.WriteLine("2. Rad sa tipom");
-            // TODO: ostali entiteti
+            Console.WriteLine("3. Rad sa prodajom namestaja");
+            Console.WriteLine("4. Rad sa akcijama");
             Console.WriteLine("0. Izlaz iz aplikacije");
 
-        } while (izbor < 0 || izbor >2);
+        } while (izbor < 0 || izbor > 4);
 
         izbor = int.Parse(Console.ReadLine());
 
@@ -145,7 +147,87 @@ namespace POP_12.Model
 
     private static void IspisiMeniTipaNamestaja()
     {
+        int izbor = 0;
+        do
+        {
+            Console.WriteLine("==== TIP NAMESTAJA ====");
+            Console.WriteLine("1. Listing tipa namestaja");
+            Console.WriteLine("2. Dodaj tip namestaja");
+            Console.WriteLine("3. Izmeni postojeci tip namestaja");
+            Console.WriteLine("4. Obrisi postojeci tip namestaja");
+            Console.WriteLine("0. Izadji");
 
+        } while (izbor < 0 || izbor > 4);
+
+        izbor = int.Parse(Console.ReadLine());
+        switch (izbor)
+        {
+            case 1:
+                IzlistajTipNamestaja();
+                break;
+            case 2:
+                DodajTipNamestaja();
+                break;
+            case 3:
+                IzmeniTipNamestaja();
+                break;
+            case 4:
+                ObrisiTipNamestaja();
+                break;
+            case 0:
+                IspisiGlavniMeni();
+                break;
+            default:
+                break;
+
+        }
+
+    }
+    private static void IzlistajTipNamestaja()
+    {
+        throw new NotImplementedException();
+    }
+    private static void DodajTipNamestaja()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void IzmeniTipNamestaja()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void ObrisiTipNamestaja()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static bool Logovanje(String id, String pass)
+    {
+        List<Korisnik> lk = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
+        foreach (var k in lk)
+        {
+            if (id == k.KorisnickoIme && pass == k.Sifra)
+                return true;
+        }
+        return false;
+    }
+    private static void LogovanjeMeni()
+    {
+
+        Console.WriteLine("Molimo vas da se ulogujete!");
+        Console.WriteLine("Unesite vase korisnicko ime:");
+        String naziv = Console.ReadLine();
+        Console.WriteLine("Unesite sifru:");
+        String sifra = Console.ReadLine();
+        bool odg = Logovanje(naziv, sifra);
+        if (odg == true)
+            IspisiGlavniMeni();
+        else
+        {
+            Console.WriteLine("Niste dobro uneli korisnicko ime ili sifru!");
+            LogovanjeMeni();
+        }
     }
 }
 // izmena,dodavanje, trazi po nazivu tipa 

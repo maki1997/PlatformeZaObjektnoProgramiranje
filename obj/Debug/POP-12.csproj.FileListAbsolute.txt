@@ -10,3 +10,9 @@ S:\pop\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.pdb
 S:\pop\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.exe
 S:\pop\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.pdb
 S:\pop\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.csprojResolveAssemblyReference.cache
+D:\POP\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.exe.config
+D:\POP\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.exe
+D:\POP\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.pdb
+D:\POP\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-12.csprojResolveAssemblyReference.cache
+D:\POP\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.exe
+D:\POP\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-12.pdb
