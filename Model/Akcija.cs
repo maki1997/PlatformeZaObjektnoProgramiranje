@@ -16,3 +16,4 @@ namespace POP_12.Model
         public bool Obrisan { get; set; }
     }
 }
+//get by id sve
