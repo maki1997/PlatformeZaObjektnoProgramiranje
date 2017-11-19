@@ -1,9 +1,9 @@
-﻿<Window x:Class="POP_SF_9_GUI.MainWindow"
+﻿<Window x:Class="POP_SF_12_GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:POP_SF_9_GUI"
+        xmlns:local="clr-namespace:POP_SF_12_GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="309.556" Width="357.21">
     <Grid Margin="-3,-8,8,-9" Height="349" VerticalAlignment="Bottom" RenderTransformOrigin="0.515,0.487">

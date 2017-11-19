@@ -1,5 +1,4 @@
-﻿using POP_SF_9_GUI.Model;
-using POP_SF_9_GUI.UI;
+﻿using POP_SF_12_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static POP_SF_9_GUI.UI.NamstajWindowDodavanjeIzmena;
+using static POP_SF_12_GUI.UI.NamstajWindowDodavanjeIzmena;
 
-namespace POP_SF_9_GUI.UI
+namespace POP_SF_12_GUI.UI
 {
     /// <summary>
     /// Interaction logic for NamestajWindow.xaml
     /// </summary>
     public partial class NamestajWindow : Window
-    {
+    {   //Stavi umesto listbox datagrid
         public NamestajWindow()
         {
             InitializeComponent();
@@ -32,9 +31,13 @@ namespace POP_SF_9_GUI.UI
         private void OsveziPrikaz()
         {
             listBoxNamestaj.Items.Clear();
+
             foreach (var namestaj in Projekat.Instance.Namestaj)
             {
-                listBoxNamestaj.Items.Add(namestaj);
+                if (namestaj.Obrisan != true)
+                {
+                    listBoxNamestaj.Items.Add(namestaj);
+                }
             }
         }
 
@@ -49,13 +52,36 @@ namespace POP_SF_9_GUI.UI
                 Naziv = ""
             };
             var namestajProzor = new NamstajWindowDodavanjeIzmena(noviNamestaj, Operacija.DODAVANJE);
-            namestajProzor.Show();
+            namestajProzor.ShowDialog();
+            OsveziPrikaz();
         }
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
             var selektovaniNamestaj = (Namestaj)listBoxNamestaj.SelectedItem;
             var namestajProzor = new NamstajWindowDodavanjeIzmena(selektovaniNamestaj, Operacija.IZMENA);
-            namestajProzor.Show();
+            namestajProzor.ShowDialog();
+            OsveziPrikaz();
+        }
+        private void ObrisiNamestaj(object sender, RoutedEventArgs e)
+        {
+            var staraListaN = Projekat.Instance.Namestaj;
+            var nam = (Namestaj)listBoxNamestaj.SelectedItem;
+            Namestaj namestaj = null;
+            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabrani namestaj: {nam.Naziv}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (var n in staraListaN)
+                {
+                    if (n.Id == nam.Id)
+                    {
+                        namestaj = n;
+                    }
+
+                }
+
+                namestaj.Obrisan = true;
+                Projekat.Instance.Namestaj = staraListaN;
+                OsveziPrikaz();
+            }
         }
     }
 }

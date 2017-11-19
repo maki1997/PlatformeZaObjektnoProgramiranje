@@ -1,0 +1,12 @@
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\bin\Debug\POP-SF-9-GUI.exe.config
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-9-GUI.exe
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-9-GUI.pdb
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\bin\Debug\POP-SF-12-GUI.exe.config
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-12-GUI.csprojResolveAssemblyReference.cache
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\MainWindow.g.cs
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\UI\GlavniProzor.g.cs
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\UI\NamestajWindow.g.cs
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\UI\NamstajWindowDodavanjeIzmena.g.cs
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\App.g.cs
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-12-GUI_MarkupCompile.cache
+D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-12-GUI_MarkupCompile.lref

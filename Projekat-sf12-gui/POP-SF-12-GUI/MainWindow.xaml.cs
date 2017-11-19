@@ -1,5 +1,5 @@
-﻿using POP_SF_9_GUI.Model;
-using POP_SF_9_GUI.UI;
+﻿using POP_SF_12_GUI.Model;
+using POP_SF_12_GUI.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace POP_SF_9_GUI
+namespace POP_SF_12_GUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

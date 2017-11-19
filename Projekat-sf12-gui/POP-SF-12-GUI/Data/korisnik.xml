@@ -2,10 +2,10 @@
 <ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Korisnik>
     <id>1</id>
-    <Ime>Marko</Ime>
-    <Prezime>Radojkovic</Prezime>
-    <KorisnickoIme>mare97</KorisnickoIme>
-    <Lozinka>mare1234</Lozinka>
+    <Ime>Maki</Ime>
+    <Prezime>Bijelic</Prezime>
+    <KorisnickoIme>maki97</KorisnickoIme>
+    <Lozinka>maki1234</Lozinka>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
