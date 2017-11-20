@@ -10,3 +10,4 @@ D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\UI
 D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\App.g.cs
 D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-12-GUI_MarkupCompile.cache
 D:\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\obj\Debug\POP-SF-12-GUI_MarkupCompile.lref
+S:\pop12\PlatformeZaObjektnoProgramiranje\Projekat-sf12-gui\POP-SF-12-GUI\bin\Debug\POP-SF-12-GUI.exe.config

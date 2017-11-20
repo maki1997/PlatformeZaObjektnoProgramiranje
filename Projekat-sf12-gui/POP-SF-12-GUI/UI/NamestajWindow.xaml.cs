@@ -20,26 +20,15 @@ namespace POP_SF_12_GUI.UI
     /// Interaction logic for NamestajWindow.xaml
     /// </summary>
     public partial class NamestajWindow : Window
-    {   //Stavi umesto listbox datagrid
+    {   //Stavi oc umesto listbox datagrid
         public NamestajWindow()
         {
             InitializeComponent();
 
-            OsveziPrikaz();
-            listBoxNamestaj.SelectedIndex = 0;
+            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestaj.IsSynchronizedWithCurrentItem = true;
         }
-        private void OsveziPrikaz()
-        {
-            listBoxNamestaj.Items.Clear();
-
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                if (namestaj.Obrisan != true)
-                {
-                    listBoxNamestaj.Items.Add(namestaj);
-                }
-            }
-        }
+        
 
         private void Izlaz(object sender, RoutedEventArgs e)
         {
@@ -53,34 +42,30 @@ namespace POP_SF_12_GUI.UI
             };
             var namestajProzor = new NamstajWindowDodavanjeIzmena(noviNamestaj, Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
         }
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
-            var selektovaniNamestaj = (Namestaj)listBoxNamestaj.SelectedItem;
+            var selektovaniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var namestajProzor = new NamstajWindowDodavanjeIzmena(selektovaniNamestaj, Operacija.IZMENA);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
         }
         private void ObrisiNamestaj(object sender, RoutedEventArgs e)
         {
             var staraListaN = Projekat.Instance.Namestaj;
-            var nam = (Namestaj)listBoxNamestaj.SelectedItem;
-            Namestaj namestaj = null;
+            var nam = (Namestaj)dgNamestaj.SelectedItem;
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabrani namestaj: {nam.Naziv}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var n in staraListaN)
+                foreach (var n in Projekat.Instance.Namestaj)
                 {
                     if (n.Id == nam.Id)
                     {
-                        namestaj = n;
+                        n.Obrisan=true;
+                        break;
                     }
 
                 }
 
-                namestaj.Obrisan = true;
-                Projekat.Instance.Namestaj = staraListaN;
-                OsveziPrikaz();
+                GenericSerializer.Serialize("namestaj.xml", Projekat.Instance.Namestaj);
             }
         }
     }
