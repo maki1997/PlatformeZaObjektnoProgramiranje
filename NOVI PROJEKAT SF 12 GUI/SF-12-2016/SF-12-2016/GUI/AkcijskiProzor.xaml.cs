@@ -1,0 +1,70 @@
+﻿using SF_12_2016.Model;
+using SF_12_2016.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using static SF_12_2016.GUI.NamestajEdit;
+
+namespace SF_12_2016.GUI
+{
+    /// <summary>
+    /// Interaction logic for AkcijaWindow.xaml
+    /// </summary>
+    public partial class AkcijskiProzor : Window
+    {
+        Namestaj namestaj;
+        Operacija operacija;
+        AkcijskaProdaja akcija = new AkcijskaProdaja();
+        public AkcijskiProzor(Operacija operacija, Namestaj noviNamestaj)
+        {
+            InitializeComponent();
+
+            this.namestaj = noviNamestaj;
+            this.operacija = operacija;
+
+            tbPopust.DataContext = akcija;
+            dpP.DataContext = akcija;
+            dpK.DataContext = akcija;
+
+
+        }
+
+        private void Izlaz_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+            var postojeceAkcije = Projekat.Instance.akcija;
+            DateTime date1 = dpP.SelectedDate.Value.Date;
+            DateTime date2 = dpK.SelectedDate.Value.Date;
+            int result = DateTime.Compare(date1, date2);
+            if (result < 0 || result == 0)
+            {
+                var Id = postojeceAkcije.Count + 1;
+                akcija.Id = Id;
+                namestaj.ak = Id;
+
+                postojeceAkcije.Add(akcija);
+            }
+            else
+            {
+                MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            GenericSerializer.Serialize("akcija.xml", postojeceAkcije);
+            this.Close();
+
+        }
+    }
+}
