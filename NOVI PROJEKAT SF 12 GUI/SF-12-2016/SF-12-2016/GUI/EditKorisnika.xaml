@@ -8,7 +8,7 @@
         Title="EditKorisnika" Height="300" Width="300">
     <Grid  KeyDown="Button_KeyDown">
         <Grid.Background>
-            <ImageBrush ImageSource="D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\Slike\user.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\Slike\user1.png"  Stretch="Fill"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118"/>
