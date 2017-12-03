@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>2</Id>
@@ -6,16 +6,25 @@
     <Cena>540</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
-    <TipNamestaja>2</TipNamestaja>
-    <Akcija></Akcija>
+    <TipN>0</TipN>
+    <ak>0</ak>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
     <Naziv>Sofa</Naziv>
     <Cena>530</Cena>
     <Kolicina>2</Kolicina>
+    <Obrisan>true</Obrisan>
+    <TipN>0</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Naziv>aa</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
-    <TipNamestaja>1 </TipNamestaja>
-    <Akcija></Akcija>
+    <TipN>2</TipN>
+    <ak>0</ak>
   </Namestaj>
 </ArrayOfNamestaj>

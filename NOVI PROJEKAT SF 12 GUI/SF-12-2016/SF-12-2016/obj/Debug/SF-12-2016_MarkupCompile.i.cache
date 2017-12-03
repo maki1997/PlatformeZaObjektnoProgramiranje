@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Maki\documents\visual studio 2015\Projects\SF-12-2016\SF-12-2016\obj\Debug\
+D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\
 SF_12_2016
 none
 false
 DEBUG;TRACE
-C:\Users\Maki\documents\visual studio 2015\Projects\SF-12-2016\SF-12-2016\App.xaml
+D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\App.xaml
 71818235669
 
 24911992086
 13738642453
 GUI\AkcijskiProzor.xaml;GUI\EditKorisnika.xaml;GUI\EditTipa.xaml;GUI\GlavniProzor.xaml;GUI\NamestajEdit.xaml;GUI\NamestajWindow.xaml;MainWindow.xaml;
 
-True
+False
 

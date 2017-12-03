@@ -26,6 +26,8 @@ namespace SF_12_2016
             cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
             cbTipKorisnika.SelectedIndex = 0;
 
+    
+
 
         }
         private void Potvrdi(object sender, RoutedEventArgs e)

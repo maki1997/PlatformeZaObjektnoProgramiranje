@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:SF_12_2016.GUI"
         mc:Ignorable="d"
         Title="AkcijskiProzor" Height="300" Width="300">
-    <Grid>
+    <Grid Margin="0,0,-8,-4">
+        <Grid.Background>
+            <ImageBrush ImageSource="D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\Slike\akcija1.jpg" Stretch="Uniform"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="146"/>
             <ColumnDefinition Width="231"/>
@@ -32,8 +35,8 @@
         </Label>
         <Label Content="Datum kraja akcije:" Grid.Row="3" FontSize="13" Margin="0,0,2,0"/>
         <TextBox Name="tbPopust" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="3,10,98,5" Text="{Binding Path=Popust}" />
-        <Button Content="Dodaj" Name="Dodaj" Click="Dodaj_Click" Grid.Column="0" Grid.Row="4" Margin="28,103,43,18"/>
-        <Button Content="Izlaz" Name="Izlaz" Grid.Column="1" Grid.Row="4" Click="Izlaz_Click" Margin="40,102,123,19"/>
+        <Button Content="Dodaj" Name="Dodaj" Click="Dodaj_Click" Grid.Column="0" Grid.Row="4" Margin="10,58,61,63"/>
+        <Button Content="Izlaz" Name="Izlaz" Grid.Row="4" Click="Izlaz_Click" Margin="10,102,61,19"/>
         <DatePicker Name="dpP" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102" Text="{Binding Path=DatumPocetka}"/>
         <DatePicker Name="dpK" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="102" Text="{Binding Path=DatumKraja}"/>
     </Grid>

@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SF_12_2016"
         mc:Ignorable="d"
+        Icon="./Slike/fotelja.jpg"
         Title="MainWindow" Height="350" Width="525">
-    <Grid Margin="-3,-8,8,-9" Height="349" VerticalAlignment="Bottom" RenderTransformOrigin="0.515,0.487">
+    <Grid Margin="0,-20,-8,-9" Height="349" VerticalAlignment="Bottom" RenderTransformOrigin="0.515,0.487">
+        <Grid.Background>
+            <ImageBrush ImageSource=".\Slike\images.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="162*"/>
             <RowDefinition Height="175*"/>
         </Grid.RowDefinitions>
-        <Label Content="Korisnicko ime:" Margin="-4,96,245,41" Grid.Row="2"/>
-        <Label Content="Password:" Margin="1,135,250,1" Grid.Row="2"/>
+        <Label Content="Korisnicko ime:" Margin="-4,96,245,33" Grid.Row="2" FontSize="15px"/>
+        <Label Content="Lozinka:" Margin="1,135,250,1" Grid.Row="2" FontSize="15px"/>
         <TextBox Name="tbKI" Grid.Row="2" FontSize="15" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="140,100,0,37" Width="189"/>
         <TextBox Name="tbPass" Grid.Row="2" FontSize="15" Margin="140,134,16,4" RenderTransformOrigin="0.5,0.5" />
-        <Label Content="Dobro dosli u Salon. Molimo vas da se prijavite!" Margin="0,50,4,87" Grid.Row="2"/>
-        <Label Content="Izaberite tip:" Margin="3,46,244,100" Grid.Row="3"/>
+        <Label Content="DOBRODOSLI, MOLIMO VAS DA SE PRIJAVITE!!!" Margin="10,29,-6,93" Grid.Row="2" FontSize="20px"/>
+        <Label Content="Izaberite tip:" Margin="3,46,244,100" Grid.Row="3" FontSize="15px"/>
         <ComboBox Name="cbTipKorisnika" Grid.Row="3" Height="24" VerticalAlignment="Bottom" Margin="131,0,39,101"/>
         <Button Content="Potvrdi" Grid.Row="3" FontSize="16" Click="Potvrdi" Margin="16,129,274,21"/>
         <Button Content="Izlaz" Grid.Row="3" FontSize="14" Click="Izlaz" Margin="259,131,34,19" RenderTransformOrigin="0.601,0"/>

@@ -8,9 +8,9 @@
         Title="EditTipa" Height="300" Width="300">
     <Grid>
         <Label  Content="Naziv:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
-        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="161,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Text="{Binding Path=Naziv}" />
-        <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="22,225,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="btIzlaz" Content="Izlaz" Click="Izlaz" HorizontalAlignment="Left" Margin="198,225,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="125,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" Text="{Binding Path=Naziv}" />
+        <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="btIzlaz" Content="Izlaz" Click="Izlaz" HorizontalAlignment="Left" Margin="17,219,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

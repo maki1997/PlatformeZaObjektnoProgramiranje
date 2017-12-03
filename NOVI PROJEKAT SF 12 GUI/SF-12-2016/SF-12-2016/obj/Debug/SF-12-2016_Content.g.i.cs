@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/prodajanamestaja.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("slike/akcija1.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("slike/user.png")]
 
 
