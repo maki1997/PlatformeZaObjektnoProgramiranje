@@ -39,7 +39,6 @@ namespace SF_12_2016.GUI
             tbLozinka.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
             cbTipNamestaja.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
-            //treba da se doda u cb
             cbTipNamestaja.DataContext = korisnik;
             cbTipNamestaja.SelectedIndex = 0;
         }
@@ -76,5 +75,38 @@ namespace SF_12_2016.GUI
             GenericSerializer.Serialize("korisnik.xml", korisnici);
             this.Close();
         }
+        private void Button_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var korisnici = Projekat.Instance.korisnik;
+                switch (operacija)
+                {
+                    case Operacija.DODAVANJE:
+                        var id = korisnici.Count + 1;
+                        korisnik.Id = id;
+                        korisnici.Add(korisnik);
+                        break;
+                    case Operacija.IZMENA:
+                        foreach (var k in korisnici)
+                        {
+                            if (k.Id == korisnik.Id)
+                            {
+                                k.Ime = korisnik.Ime;
+                                k.Prezime = korisnik.Prezime;
+                                k.KorisnickoIme = korisnik.KorisnickoIme;
+                                k.Lozinka = korisnik.Lozinka;
+                                k.TipKorisnika = korisnik.TipKorisnika;
+                                break;
+                            }
+                        }
+                        break;
+                }
+                GenericSerializer.Serialize("korisnik.xml", korisnici);
+                this.Close();
+            }
+        }
     }
 }
+
+

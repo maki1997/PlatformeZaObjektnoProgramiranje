@@ -95,5 +95,42 @@ namespace SF_12_2016.GUI
             var akcija = new AkcijskiProzor(operacija, namestaj);
             akcija.ShowDialog();
         }
+
+        private void Button_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var postojeciNamestaj = Projekat.Instance.namestaj;
+
+                switch (operacija)
+                {
+
+                    case Operacija.DODAVANJE:
+
+                        var Id = postojeciNamestaj.Count + 1;
+                        namestaj.Id = Id;
+                        postojeciNamestaj.Add(namestaj);
+
+
+                        break;
+                    case Operacija.IZMENA:
+                        foreach (var n in postojeciNamestaj)
+                        {
+                            if (n.Id == namestaj.Id)
+                            {
+                                n.Naziv = namestaj.Naziv;
+                                n.Kolicina = namestaj.Kolicina;
+                                n.Cena = namestaj.Cena;
+                                n.TipN = namestaj.TipN;
+                                break;
+                            }
+                        }
+                        break;
+
+
+
+                }
+            }
+        }
     }
 }

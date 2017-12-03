@@ -2,16 +2,16 @@
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>2</Id>
-    <Naziv>Kauc</Naziv>
+    <Naziv>Krevet</Naziv>
     <Cena>540</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
-    <TipN>0</TipN>
+    <TipN>1</TipN>
     <ak>0</ak>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
-    <Naziv>Sofa</Naziv>
+    <Naziv>Sto</Naziv>
     <Cena>530</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>true</Obrisan>
@@ -19,12 +19,57 @@
     <ak>0</ak>
   </Namestaj>
   <Namestaj>
-    <Id>3</Id>
+    <Id>4</Id>
     <Naziv>aa</Naziv>
     <Cena>1000</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
     <TipN>2</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>asd</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>12</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>1</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>asd</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>12</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>1</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>asd</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>12</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>1</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>asd</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>12</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>1</TipN>
+    <ak>0</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>asd</Naziv>
+    <Cena>1000</Cena>
+    <Kolicina>12</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>1</TipN>
     <ak>0</ak>
   </Namestaj>
 </ArrayOfNamestaj>

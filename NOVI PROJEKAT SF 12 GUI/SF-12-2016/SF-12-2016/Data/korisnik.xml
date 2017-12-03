@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Korisnik>
     <Id>0</Id>
-    <Ime>p</Ime>
-    <Prezime>p</Prezime>
-    <KorisnickoIme>p</KorisnickoIme>
-    <Lozinka>p</Lozinka>
+    <Ime>Marijan</Ime>
+    <Prezime>Bijelic</Prezime>
+    <KorisnickoIme>maki</KorisnickoIme>
+    <Lozinka>maki</Lozinka>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
@@ -18,10 +18,18 @@
   </Korisnik>
   <Korisnik>
     <Id>0</Id>
-    <Ime>p</Ime>
-    <Prezime>p</Prezime>
-    <KorisnickoIme>p</KorisnickoIme>
-    <Lozinka>p</Lozinka>
+    <Ime>s</Ime>
+    <Prezime>s</Prezime>
+    <KorisnickoIme>s</KorisnickoIme>
+    <Lozinka>s</Lozinka>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <Id>4</Id>
+    <Ime>ddd</Ime>
+    <Prezime>ssss</Prezime>
+    <KorisnickoIme>d</KorisnickoIme>
+    <Lozinka>d</Lozinka>
     <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

@@ -46,25 +46,54 @@ namespace SF_12_2016.GUI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-            var postojeceAkcije = Projekat.Instance.akcija;
-            DateTime date1 = dpP.SelectedDate.Value.Date;
-            DateTime date2 = dpK.SelectedDate.Value.Date;
-            int result = DateTime.Compare(date1, date2);
+            var akcijaa = Projekat.Instance.akcija;
+            DateTime pocetni = dpP.SelectedDate.Value.Date;
+            DateTime krajnji = dpK.SelectedDate.Value.Date;
+            int result = DateTime.Compare(pocetni, krajnji);
             if (result < 0 || result == 0)
             {
-                var Id = postojeceAkcije.Count + 1;
+                var Id = akcijaa.Count + 1;
                 akcija.Id = Id;
                 namestaj.ak = Id;
 
-                postojeceAkcije.Add(akcija);
+                akcijaa.Add(akcija);
             }
             else
             {
-                MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Akcija ne moze da istekne pre nego sto je pocela", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            GenericSerializer.Serialize("akcija.xml", postojeceAkcije);
+            GenericSerializer.Serialize("akcija.xml", akcijaa);
             this.Close();
 
         }
+
+        private void Button_KeyDown(object sender,KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var akcijaa = Projekat.Instance.akcija;
+                DateTime pocetni = dpP.SelectedDate.Value.Date;
+                DateTime krajnji = dpK.SelectedDate.Value.Date;
+                int result = DateTime.Compare(pocetni, krajnji);
+                if (result < 0 || result == 0)
+                {
+                    var Id = akcijaa.Count + 1;
+                    akcija.Id = Id;
+                    namestaj.ak = Id;
+
+                    akcijaa.Add(akcija);
+                }
+                else
+                {
+                    MessageBox.Show("Akcija ne moze da istekne pre nego sto je pocela", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                GenericSerializer.Serialize("akcija.xml", akcijaa);
+                this.Close();
+
+            }
+        }
+
+
+
     }
 }

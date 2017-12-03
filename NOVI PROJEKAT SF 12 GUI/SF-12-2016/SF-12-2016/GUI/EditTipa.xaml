@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SF_12_2016.GUI"
         mc:Ignorable="d"
         Title="EditTipa" Height="300" Width="300">
-    <Grid>
+    <Grid  KeyDown="Button_KeyDown">
         <Label  Content="Naziv:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
         <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="125,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" Text="{Binding Path=Naziv}" />
         <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top" Width="75"/>

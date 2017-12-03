@@ -30,11 +30,27 @@ namespace SF_12_2016
 
 
         }
+
+        private void Button_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (Logovanje(tbKI.Text, tbPass.Password.ToString(), cbTipKorisnika.SelectedItem.ToString()) == true)
+                {
+                    var gp = new GlavniProzor((TipKorisnika)cbTipKorisnika.SelectedItem);
+                    gp.Show();
+                }
+
+                else { MessageBox.Show("Prijava nije uspela! Pokusajte ponovo", "Pogresno logovanje", MessageBoxButton.OK, MessageBoxImage.Error); OsveziProkaz(); }
+
+            }
+        }
+
         private void Potvrdi(object sender, RoutedEventArgs e)
         {
 
 
-            if (Logovanje(tbKI.Text, tbPass.Text, cbTipKorisnika.SelectedItem.ToString()) == true)
+            if (Logovanje(tbKI.Text, tbPass.Password.ToString(), cbTipKorisnika.SelectedItem.ToString()) == true)
             {
                 var gp = new GlavniProzor((TipKorisnika)cbTipKorisnika.SelectedItem);
                 gp.Show();

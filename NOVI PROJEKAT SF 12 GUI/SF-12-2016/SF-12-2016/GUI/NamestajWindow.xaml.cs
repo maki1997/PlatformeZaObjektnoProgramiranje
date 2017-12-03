@@ -23,7 +23,7 @@ namespace SF_12_2016.GUI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-        public enum Prikaz
+        public enum Rad
         {
             Namestaj,
             TipNamestaja,
@@ -33,25 +33,24 @@ namespace SF_12_2016.GUI
 
         };
         private ICollectionView view;
-        Prikaz prikaz;
+        Rad rad;
         public SizeToContent SizeToContent { get; set; }
-        public NamestajWindow(Prikaz prikaz)
+        public NamestajWindow(Rad rad)
         {
             InitializeComponent();
             this.SizeToContent = SizeToContent.WidthAndHeight;
-            this.prikaz = prikaz;
+            this.rad = rad;
 
-            switch (prikaz)
+            switch (rad)
             {
-                case Prikaz.Namestaj:
-                    //DataGridNamestaj();
+                case Rad.Namestaj:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.namestaj);
                     view.Filter = namestajFileter;
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
-                case Prikaz.TipNamestaja:
+                case Rad.TipNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.tipovi);
                     view.Filter = tipnamestajFileter;
 
@@ -59,14 +58,14 @@ namespace SF_12_2016.GUI
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
-                case Prikaz.Korisnik:
+                case Rad.Korisnik:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.korisnik);
                     view.Filter = korisnikFileter;
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
-                case Prikaz.ProdajaNamestaja:
+                case Rad.ProdajaNamestaja:
                     dgPrikaz.ItemsSource = Projekat.Instance.racun;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     btObrisi.Visibility = System.Windows.Visibility.Hidden;
@@ -98,18 +97,18 @@ namespace SF_12_2016.GUI
         private void Dodaj(object sender, RoutedEventArgs e)
         {
 
-            switch (prikaz)
+            switch (rad)
             {
-                case Prikaz.Namestaj:
+                case Rad.Namestaj:
                     DodajNamestaj();
                     break;
-                case Prikaz.TipNamestaja:
+                case Rad.TipNamestaja:
                     DodajTipNamestaja();
                     break;
-                case Prikaz.Korisnik:
+                case Rad.Korisnik:
                     DodajKorisnika();
                     break;
-                case Prikaz.ProdajaNamestaja: break;
+                case Rad.ProdajaNamestaja: break;
 
 
             }
@@ -118,18 +117,18 @@ namespace SF_12_2016.GUI
         }
         private void Izmeni(object sender, RoutedEventArgs e)
         {
-            switch (prikaz)
+            switch (rad)
             {
-                case Prikaz.Namestaj:
+                case Rad.Namestaj:
                     IzmeniNamestaj();
                     break;
-                case Prikaz.TipNamestaja:
+                case Rad.TipNamestaja:
                     IzmeniTipNamestaja();
                     break;
-                case Prikaz.Korisnik:
+                case Rad.Korisnik:
                     IzmeniKorisnik();
                     break;
-                case Prikaz.ProdajaNamestaja: break;
+                case Rad.ProdajaNamestaja: break;
 
 
             }
@@ -137,15 +136,15 @@ namespace SF_12_2016.GUI
         }
         private void Obrisi(object sender, RoutedEventArgs e)
         {
-            switch (prikaz)
+            switch (rad)
             {
-                case Prikaz.Namestaj:
+                case Rad.Namestaj:
                     ObrisiNamestaj();
                     break;
-                case Prikaz.TipNamestaja:
+                case Rad.TipNamestaja:
                     ObrisiTipNamestaj();
                     break;
-                case Prikaz.Korisnik:
+                case Rad.Korisnik:
                     ObrisiKorisnika();
                     break;
 
@@ -195,6 +194,7 @@ namespace SF_12_2016.GUI
             var prozor = new EditKorisnika(EditKorisnika.Operacija.IZMENA, selektovaniKorisnki);
             prozor.ShowDialog();
         }
+
         private void ObrisiNamestaj()
         {
             var staraListaN = Projekat.Instance.namestaj;
@@ -259,22 +259,22 @@ namespace SF_12_2016.GUI
 
         private void dgPrikaz_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            switch (prikaz)
+            switch (rad)
             {
-                case Prikaz.Namestaj:
+                case Rad.Namestaj:
                     if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "ak" || (string)e.Column.Header == "TipN")
                     {
                         e.Cancel = true;
                     }
 
                     break;
-                case Prikaz.TipNamestaja:
+                case Rad.TipNamestaja:
                     if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
                     {
                         e.Cancel = true;
                     }
                     break;
-                case Prikaz.Korisnik:
+                case Rad.Korisnik:
                     if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
                     {
                         e.Cancel = true;

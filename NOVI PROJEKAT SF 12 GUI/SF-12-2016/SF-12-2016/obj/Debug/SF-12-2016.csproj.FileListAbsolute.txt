@@ -49,3 +49,4 @@ D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-201
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.g.resources
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF_12_2016.Properties.Resources.resources
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.csproj.GenerateResource.Cache
+D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.csprojResolveAssemblyReference.cache
