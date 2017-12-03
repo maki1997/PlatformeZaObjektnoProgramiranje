@@ -46,6 +46,7 @@ namespace SF_12_2016.GUI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
+            //uporedjuje datume ako je pocetni manji doda
             var akcijaa = Projekat.Instance.akcija;
             DateTime pocetni = dpP.SelectedDate.Value.Date;
             DateTime krajnji = dpK.SelectedDate.Value.Date;

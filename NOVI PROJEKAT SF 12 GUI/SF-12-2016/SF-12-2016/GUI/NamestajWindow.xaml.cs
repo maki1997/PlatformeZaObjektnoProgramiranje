@@ -53,7 +53,6 @@ namespace SF_12_2016.GUI
                 case Rad.TipNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.tipovi);
                     view.Filter = tipnamestajFileter;
-
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
