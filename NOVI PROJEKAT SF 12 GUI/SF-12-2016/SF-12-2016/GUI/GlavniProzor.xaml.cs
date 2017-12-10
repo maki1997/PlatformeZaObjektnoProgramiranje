@@ -35,6 +35,7 @@ namespace SF_12_2016.GUI
                 listBox.Items.Add("Rad sa tipom namestaja");
                 listBox.Items.Add("Rad sa korisnicima");
                 listBox.Items.Add("Rad sa prodajom namestaja");
+                listBox.Items.Add("Rad sa dodatnim uslugama");
             }
             else
             {
@@ -63,6 +64,11 @@ namespace SF_12_2016.GUI
                 case "Rad sa prodajom namestaja":
                     var PNProzor = new NamestajWindow(NamestajWindow.Rad.ProdajaNamestaja);
                     PNProzor.ShowDialog();
+                    break;
+
+                case "Rad sa dodatnim uslugama":
+                    var DProzor = new NamestajWindow(NamestajWindow.Rad.DodatneUsluge);
+                    DProzor.ShowDialog();
                     break;
             }
         }

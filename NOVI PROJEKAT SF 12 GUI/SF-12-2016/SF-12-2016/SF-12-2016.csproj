@@ -58,6 +58,9 @@
     <Compile Include="GUI\AkcijskiProzor.xaml.cs">
       <DependentUpon>AkcijskiProzor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DodatnaUslugaWindow.xaml.cs">
+      <DependentUpon>DodatnaUslugaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\EditKorisnika.xaml.cs">
       <DependentUpon>EditKorisnika.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
     </Compile>
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="GUI\AkcijskiProzor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodatnaUslugaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

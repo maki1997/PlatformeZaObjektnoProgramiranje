@@ -29,6 +29,7 @@ namespace SF_12_2016.GUI
             TipNamestaja,
             Korisnik,
             ProdajaNamestaja,
+            DodatneUsluge
 
 
         };
@@ -69,6 +70,13 @@ namespace SF_12_2016.GUI
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     btObrisi.Visibility = System.Windows.Visibility.Hidden;
                     break;
+                case Rad.DodatneUsluge:
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.dodaci);
+                    view.Filter = UslugaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
 
 
 
@@ -87,6 +95,10 @@ namespace SF_12_2016.GUI
         private bool korisnikFileter(object obj)
         {
             return ((Korisnik)obj).Obrisan == false;
+        }
+        private bool UslugaFilter(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
         }
 
         private void Izlaz(object sender, RoutedEventArgs e)
@@ -108,6 +120,9 @@ namespace SF_12_2016.GUI
                     DodajKorisnika();
                     break;
                 case Rad.ProdajaNamestaja: break;
+                case Rad.DodatneUsluge:
+                    DodajDodatnuUslugu();
+                    break;
 
 
             }
@@ -128,7 +143,10 @@ namespace SF_12_2016.GUI
                     IzmeniKorisnik();
                     break;
                 case Rad.ProdajaNamestaja: break;
-
+                case Rad.DodatneUsluge:
+                    IzmeniDodatnaUsluga();
+                    break;
+                
 
             }
 
@@ -145,6 +163,9 @@ namespace SF_12_2016.GUI
                     break;
                 case Rad.Korisnik:
                     ObrisiKorisnika();
+                    break;
+                case Rad.DodatneUsluge:
+                    ObrisiDodatnaUsluga();
                     break;
 
 
@@ -175,6 +196,12 @@ namespace SF_12_2016.GUI
             var korisnikProzor = new EditKorisnika(EditKorisnika.Operacija.DODAVANJE, k);
             korisnikProzor.ShowDialog();
         }
+        private void DodajDodatnuUslugu()
+        {
+            var du = new DodatnaUsluga();
+            var dProzor = new DodatnaUslugaWindow(DodatnaUslugaWindow.Operacija.DODAVANJE, du);
+            dProzor.ShowDialog();
+        }
         private void IzmeniNamestaj()
         {
             var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
@@ -191,6 +218,12 @@ namespace SF_12_2016.GUI
         {
             var selektovaniKorisnki = (Korisnik)dgPrikaz.SelectedItem;
             var prozor = new EditKorisnika(EditKorisnika.Operacija.IZMENA, selektovaniKorisnki);
+            prozor.ShowDialog();
+        }
+        private void IzmeniDodatnaUsluga()
+        {
+            var selektovaniDU = (DodatnaUsluga)dgPrikaz.SelectedItem;
+            var prozor = new DodatnaUslugaWindow(DodatnaUslugaWindow.Operacija.IZMENA, selektovaniDU);
             prozor.ShowDialog();
         }
 
@@ -254,7 +287,26 @@ namespace SF_12_2016.GUI
             }
             GenericSerializer.Serialize("korisnik.xml", Projekat.Instance.korisnik);
         }
+        private void ObrisiDodatnaUsluga()
+        {
+            var staraListaN = Projekat.Instance.dodaci;
+            var du = (DodatnaUsluga)dgPrikaz.SelectedItem;
 
+            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete dodatnu uslugu: {du.Naziv} ?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (var n in staraListaN)
+                {
+                    if (n.Id == du.Id)
+                    {
+                        n.Obrisan = true;
+                        view.Refresh();
+                        break;
+                    }
+
+                }
+            }
+            GenericSerializer.Serialize("dodatnausluga.xml", Projekat.Instance.dodaci);
+        }
 
         private void dgPrikaz_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -274,6 +326,12 @@ namespace SF_12_2016.GUI
                     }
                     break;
                 case Rad.Korisnik:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
+                case Rad.DodatneUsluge:
                     if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
                     {
                         e.Cancel = true;
