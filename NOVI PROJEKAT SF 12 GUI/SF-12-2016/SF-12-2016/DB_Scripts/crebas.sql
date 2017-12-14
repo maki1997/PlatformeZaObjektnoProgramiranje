@@ -7,7 +7,6 @@ GO
 
 CREATE TABLE Namestaj (
 	Id INT PRIMARY KEY IDENTITY (1, 1),
-	AkcijaId INT,
 	TipNamestajaId INT,
 	Naziv VARCHAR(100),
 	Cena NUMERIC(9,2),

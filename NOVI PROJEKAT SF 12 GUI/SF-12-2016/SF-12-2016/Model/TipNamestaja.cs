@@ -85,6 +85,56 @@ namespace SF_12_2016.Model
                 return tipoviNamestaja;
             }
         }
+        public static TipNamestaja Create(TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ToString()))
+            {
+
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = $"INSERT INTO TipNamestaja (Naziv,Obrisan) VALUES (@Naziv,@Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                int newId = int.Parse(cmd.ExecuteScalar().ToString());   // izvrsava query
+                tn.Id = newId;
+            }
+            Projekat.Instance.tipovi.Add(tn); // azuriranje i stanje modela
+            return tn;
+        }
+        public static void Update (TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ToString()))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@Naziv,Obrisan=@Obrisan WHERE Id=@Id";
+                cmd.Parameters.AddWithValue("Id", tn.Id);
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                cmd.ExecuteNonQuery();
+
+                foreach(var tipNamestaja in Projekat.Instance.tipovi)
+                {
+                    if (tipNamestaja.Id == tn.Id)
+                    {
+                        tipNamestaja.Naziv = tn.Naziv;
+                        tipNamestaja.Obrisan = tn.Obrisan;
+                        break;
+                    }
+                }
+            }
+        }
+        public static void Delete (TipNamestaja tn)
+        {
+            tn.Obrisan = true;
+            Update(tn);
+        }
         #endregion
     }
 
