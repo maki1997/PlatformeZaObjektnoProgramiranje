@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("slike/akcija1.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("slike/user.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db_scripts/crebas.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db_scripts/seed.sql")]
 
 

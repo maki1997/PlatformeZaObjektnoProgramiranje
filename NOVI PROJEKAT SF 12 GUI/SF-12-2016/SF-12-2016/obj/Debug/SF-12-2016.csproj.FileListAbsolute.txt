@@ -52,3 +52,6 @@ D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-201
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.csprojResolveAssemblyReference.cache
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\GUI\DodatnaUslugaWindow.g.cs
 D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\GUI\DodatnaUslugaWindow.baml
+S:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\bin\Debug\SF-12-2016.exe.config
+S:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.exe
+S:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\obj\Debug\SF-12-2016.pdb

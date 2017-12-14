@@ -19,7 +19,7 @@ namespace SF_12_2016.Model
         public ObservableCollection<Racun> racun;
         private Projekat()
         {
-            tipovi = new ObservableCollection<TipNamestaja>(GenericSerializer.Deserialize<TipNamestaja>("tipnamestaja.xml"));
+            tipovi = TipNamestaja.GetAll();
             namestaj = new ObservableCollection<Namestaj>(GenericSerializer.Deserialize<Namestaj>("namestaj.xml"));
             korisnik = new ObservableCollection<Korisnik>(GenericSerializer.Deserialize<Korisnik>("korisnik.xml"));
             dodaci = new ObservableCollection<DodatnaUsluga>(GenericSerializer.Deserialize<DodatnaUsluga>("dodatnausluga.xml"));
