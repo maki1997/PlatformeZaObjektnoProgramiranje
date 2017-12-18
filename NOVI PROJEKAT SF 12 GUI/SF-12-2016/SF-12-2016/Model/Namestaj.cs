@@ -157,8 +157,8 @@ namespace SF_12_2016.Model
                     n.TipN = int.Parse(row["TipNamestajaId"].ToString());
                     n.Naziv = row["Naziv"].ToString();
                     n.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    n.Cena = int.Parse(row["Id"].ToString());
-                    n.Kolicina = int.Parse(row["Id"].ToString());
+                    n.Cena = int.Parse(row["Cena"].ToString());
+                    n.Kolicina = int.Parse(row["Kolicina"].ToString());
                     Namestaj.Add(n);
 
                 }

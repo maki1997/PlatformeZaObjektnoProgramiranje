@@ -21,10 +21,10 @@ namespace SF_12_2016.Model
         {
             tipovi = TipNamestaja.GetAll();
             namestaj = Namestaj.GetAll();
-            korisnik = new ObservableCollection<Korisnik>(GenericSerializer.Deserialize<Korisnik>("korisnik.xml"));
-            dodaci = new ObservableCollection<DodatnaUsluga>(GenericSerializer.Deserialize<DodatnaUsluga>("dodatnausluga.xml"));
+            korisnik = Korisnik.GetAll();
+            dodaci = DodatnaUsluga.GetAll();
             racun = new ObservableCollection<Racun>(GenericSerializer.Deserialize<Racun>("prodajanamestaja.xml"));
-            akcija = new ObservableCollection<AkcijskaProdaja>(GenericSerializer.Deserialize<AkcijskaProdaja>("akcija.xml"));
+            akcija = AkcijskaProdaja.GetAll();
         }
 
 
