@@ -41,5 +41,18 @@ CREATE TABLE Korisnik (
 	Obrisan BIT
 )
 
+CREATE TABLE Salon (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Naziv VARCHAR(100),
+	Adresa VARCHAR(100),
+	Telefon VARCHAR(30),
+	EMAIL VARCHAR(50),
+	AdresaSajta VARHCAR(100),
+	PIB INT,
+	MaticniBroj INT,
+	BrojZiroRacuna VARCHAR (100)
+)
+
+
 
 /*validacija*/

@@ -17,6 +17,7 @@ namespace SF_12_2016.Model
         public ObservableCollection<DodatnaUsluga> dodaci;
         public ObservableCollection<Korisnik> korisnik;
         public ObservableCollection<Racun> racun;
+        public ObservableCollection<Salon> saloni;
         private Projekat()
         {
             tipovi = TipNamestaja.GetAll();
@@ -25,6 +26,7 @@ namespace SF_12_2016.Model
             dodaci = DodatnaUsluga.GetAll();
             racun = new ObservableCollection<Racun>(GenericSerializer.Deserialize<Racun>("prodajanamestaja.xml"));
             akcija = AkcijskaProdaja.GetAll();
+            saloni = Salon.GetAll();
         }
 
 
