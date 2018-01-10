@@ -19,6 +19,7 @@ namespace SF_12_2016.GUI
     /// <summary>
     /// Interaction logic for EditKorisnika.xaml
     /// </summary>
+
     public partial class EditKorisnika : Window
     {
         private Korisnik korisnik;
@@ -39,6 +40,7 @@ namespace SF_12_2016.GUI
             tbLozinka.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
             cbTipNamestaja.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
+
             cbTipNamestaja.DataContext = korisnik;
             cbTipNamestaja.SelectedIndex = 0;
         }
@@ -53,60 +55,41 @@ namespace SF_12_2016.GUI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var id = korisnici.Count + 1;
-                    korisnik.Id = id;
-                    korisnici.Add(korisnik);
+                    if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
+                    {
+                        Korisnik.Create(korisnik);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     break;
                 case Operacija.IZMENA:
                     foreach (var k in korisnici)
                     {
                         if (k.Id == korisnik.Id)
                         {
-                            k.Ime = korisnik.Ime;
-                            k.Prezime = korisnik.Prezime;
-                            k.KorisnickoIme = korisnik.KorisnickoIme;
-                            k.Lozinka = korisnik.Lozinka;
-                            k.TipKorisnika = korisnik.TipKorisnika;
-                            break;
-                        }
-                    }
-                    break;
-            }
-            GenericSerializer.Serialize("korisnik.xml", korisnici);
-            this.Close();
-        }
-        private void Button_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                var korisnici = Projekat.Instance.korisnik;
-                switch (operacija)
-                {
-                    case Operacija.DODAVANJE:
-                        var id = korisnici.Count + 1;
-                        korisnik.Id = id;
-                        korisnici.Add(korisnik);
-                        break;
-                    case Operacija.IZMENA:
-                        foreach (var k in korisnici)
-                        {
-                            if (k.Id == korisnik.Id)
+                            if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
                             {
                                 k.Ime = korisnik.Ime;
                                 k.Prezime = korisnik.Prezime;
                                 k.KorisnickoIme = korisnik.KorisnickoIme;
                                 k.Lozinka = korisnik.Lozinka;
                                 k.TipKorisnika = korisnik.TipKorisnika;
-                                break;
+                                Korisnik.Update(k);
                             }
+                            else
+                            {
+                                MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            break;
                         }
-                        break;
-                }
-                GenericSerializer.Serialize("korisnik.xml", korisnici);
-                this.Close();
+                    }
+                    break;
             }
+
+            this.Close();
         }
     }
 }
-
 

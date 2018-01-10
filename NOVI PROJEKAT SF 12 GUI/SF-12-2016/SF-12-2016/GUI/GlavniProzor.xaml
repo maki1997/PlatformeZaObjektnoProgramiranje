@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SF_12_2016.GUI"
         mc:Ignorable="d"
         Title="GlavniProzor" Height="384" Width="371">
-    <Grid KeyDown="Button_KeyDown" Margin="0,2,1,1" HorizontalAlignment="Right" Width="352">
+    <Grid Margin="0,2,1,1" HorizontalAlignment="Right" Width="352">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="92*"/>
             <ColumnDefinition Width="360*"/>

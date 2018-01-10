@@ -17,42 +17,42 @@ using System.Windows.Shapes;
 
 namespace SF_12_2016
 {
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
     public partial class MainWindow : Window
     {
+        public Korisnik korisnik = new Korisnik();
         public MainWindow()
         {
             InitializeComponent();
-            cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
-            cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
-            cbTipKorisnika.SelectedIndex = 0;
-
-    
-
+            AkcijskaProdaja.AkcijeClean();
 
         }
-
-        private void Button_KeyDown(object sender, KeyEventArgs e)
+        private bool Logovanje(String id, String pass)
         {
-            if (e.Key == Key.Enter)
-            {
-                if (Logovanje(tbKI.Text, tbPass.Password.ToString(), cbTipKorisnika.SelectedItem.ToString()) == true)
-                {
-                    var gp = new GlavniProzor((TipKorisnika)cbTipKorisnika.SelectedItem);
-                    gp.Show();
-                }
 
-                else { MessageBox.Show("Prijava nije uspela! Pokusajte ponovo", "Pogresno logovanje", MessageBoxButton.OK, MessageBoxImage.Error); OsveziProkaz(); }
+            foreach (var k in Projekat.Instance.korisnik)
+            {
+
+                if (id.Equals(k.KorisnickoIme) && pass.Equals(k.Lozinka))
+                    korisnik.TipKorisnika = k.TipKorisnika;
+                if (k.Obrisan == true)
+                {
+                    MessageBox.Show("Korisnik je izbrisan", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                return true;
 
             }
+            return false;
         }
-
         private void Potvrdi(object sender, RoutedEventArgs e)
         {
 
 
-            if (Logovanje(tbKI.Text, tbPass.Password.ToString(), cbTipKorisnika.SelectedItem.ToString()) == true)
+            if (Logovanje(tbKI.Text, tbPass.Text) == true)
             {
-                var gp = new GlavniProzor((TipKorisnika)cbTipKorisnika.SelectedItem);
+                var gp = new GlavniProzor(tbKI.Text, tbPass.Text);
                 gp.Show();
             }
 
@@ -66,19 +66,7 @@ namespace SF_12_2016
             tbPass.Clear();
         }
 
-        private static bool Logovanje(String id, String pass, String tip)
-        {
 
-            foreach (var k in Projekat.Instance.korisnik)
-            {
-
-                if (id == k.KorisnickoIme && pass == k.Lozinka && "Administrator" == tip)
-                    return true;
-                if (id == k.KorisnickoIme && pass == k.Lozinka && "Prodavac" == tip)
-                    return true;
-            }
-            return false;
-        }
         private void Izlaz(object sender, RoutedEventArgs e)
         {
             this.Close();

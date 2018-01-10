@@ -18,20 +18,20 @@ using static SF_12_2016.GUI.NamestajEdit;
 namespace SF_12_2016.GUI
 {
     /// <summary>
-    /// Interaction logic for AkcijaWindow.xaml
+    /// Interaction logic for AkcijskiProzor.xaml
     /// </summary>
     public partial class AkcijskiProzor : Window
     {
         Namestaj namestaj;
         Operacija operacija;
-        AkcijskaProdaja akcija = new AkcijskaProdaja();
-        public AkcijskiProzor(Operacija operacija, Namestaj noviNamestaj)
+        AkcijskaProdaja akcija;
+        public AkcijskiProzor(Operacija operacija, Namestaj noviNamestaj, AkcijskaProdaja akcija)
         {
             InitializeComponent();
 
             this.namestaj = noviNamestaj;
             this.operacija = operacija;
-
+            this.akcija = akcija;
             tbPopust.DataContext = akcija;
             dpP.DataContext = akcija;
             dpK.DataContext = akcija;
@@ -46,55 +46,71 @@ namespace SF_12_2016.GUI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-            //uporedjuje datume ako je pocetni manji doda
-            var akcijaa = Projekat.Instance.akcija;
-            DateTime pocetni = dpP.SelectedDate.Value.Date;
-            DateTime krajnji = dpK.SelectedDate.Value.Date;
-            int result = DateTime.Compare(pocetni, krajnji);
-            if (result < 0 || result == 0)
+            var postojeceAkcije = Projekat.Instance.akcija;
+            DateTime date1 = dpP.SelectedDate.Value.Date;
+            DateTime date2 = dpK.SelectedDate.Value.Date;
+            int result = DateTime.Compare(date1, date2);
+            var n = Projekat.Instance.namestaj;
+            Console.WriteLine(akcija.Popust);
+            if (akcija.Popust > 0 || akcija.Popust < 91)
             {
-                var Id = akcijaa.Count + 1;
-                akcija.Id = Id;
-                namestaj.ak = Id;
+                switch (operacija)
+                {
+                    case Operacija.DODAVANJE:
 
-                akcijaa.Add(akcija);
+
+                        if (result < 0)
+                        {
+                            AkcijskaProdaja.Create(akcija);
+                            namestaj.ak = akcija.Id;
+                            Namestaj.Update(namestaj);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        break;
+                    case Operacija.IZMENA:
+
+
+                        if (result < 0)
+                        {
+                            foreach (var nn in n)
+                            {
+                                if (nn.ak == namestaj.ak)
+                                {
+                                    AkcijskaProdaja.Update(akcija);
+                                    nn.ak = akcija.Id;
+                                    Namestaj.Update(namestaj);
+                                }
+                                else
+                                {
+                                    AkcijskaProdaja.Create(akcija);
+                                    namestaj.ak = akcija.Id;
+                                    Namestaj.Update(namestaj);
+                                }
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        break;
+
+                }
             }
             else
             {
-                MessageBox.Show("Akcija ne moze da istekne pre nego sto je pocela", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Akcija ne moze biti manja od 0 ili veca od 90%", "Akcija", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            GenericSerializer.Serialize("akcija.xml", akcijaa);
+
+
+
             this.Close();
 
         }
-
-        private void Button_KeyDown(object sender,KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                var akcijaa = Projekat.Instance.akcija;
-                DateTime pocetni = dpP.SelectedDate.Value.Date;
-                DateTime krajnji = dpK.SelectedDate.Value.Date;
-                int result = DateTime.Compare(pocetni, krajnji);
-                if (result < 0 || result == 0)
-                {
-                    var Id = akcijaa.Count + 1;
-                    akcija.Id = Id;
-                    namestaj.ak = Id;
-
-                    akcijaa.Add(akcija);
-                }
-                else
-                {
-                    MessageBox.Show("Akcija ne moze da istekne pre nego sto je pocela", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                GenericSerializer.Serialize("akcija.xml", akcijaa);
-                this.Close();
-
-            }
-        }
-
-
-
     }
 }

@@ -18,15 +18,19 @@ namespace SF_12_2016.Model
         public ObservableCollection<Korisnik> korisnik;
         public ObservableCollection<Racun> racun;
         public ObservableCollection<Salon> saloni;
+        public ObservableCollection<StavkaProdajeNamestaj> spn;
+        public ObservableCollection<StavkaProdajeDU> spdu;
         private Projekat()
         {
             tipovi = TipNamestaja.GetAll();
             namestaj = Namestaj.GetAll();
             korisnik = Korisnik.GetAll();
             dodaci = DodatnaUsluga.GetAll();
-            racun = new ObservableCollection<Racun>(GenericSerializer.Deserialize<Racun>("prodajanamestaja.xml"));
+            racun = Racun.GetAll();
             akcija = AkcijskaProdaja.GetAll();
-            saloni = Salon.GetAll();
+            spn = StavkaProdajeNamestaj.GetAll();
+            spdu = StavkaProdajeDU.GetAll();
+
         }
 
 

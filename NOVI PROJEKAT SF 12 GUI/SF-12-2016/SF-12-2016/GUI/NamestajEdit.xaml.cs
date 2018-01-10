@@ -19,6 +19,7 @@ namespace SF_12_2016.GUI
     /// <summary>
     /// Interaction logic for NamestajEdit.xaml
     /// </summary>
+
     public partial class NamestajEdit : Window
     {
         private Namestaj namestaj;
@@ -61,10 +62,7 @@ namespace SF_12_2016.GUI
             {
 
                 case Operacija.DODAVANJE:
-
-                    var Id = postojeciNamestaj.Count + 1;
-                    namestaj.Id = Id;
-                    postojeciNamestaj.Add(namestaj);
+                    Namestaj.Create(namestaj);
 
 
                     break;
@@ -77,6 +75,7 @@ namespace SF_12_2016.GUI
                             n.Kolicina = namestaj.Kolicina;
                             n.Cena = namestaj.Cena;
                             n.TipN = namestaj.TipN;
+                            Namestaj.Update(namestaj);
                             break;
                         }
                     }
@@ -85,52 +84,19 @@ namespace SF_12_2016.GUI
 
 
             }
-            GenericSerializer.Serialize("namestaj.xml", postojeciNamestaj);
+
 
             this.Close();
         }
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
-            var akcija = new AkcijskiProzor(operacija, namestaj);
-            akcija.ShowDialog();
-        }
-
-        private void Button_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            var akcijaa = new AkcijskaProdaja()
             {
-                var postojeciNamestaj = Projekat.Instance.namestaj;
-
-                switch (operacija)
-                {
-
-                    case Operacija.DODAVANJE:
-
-                        var Id = postojeciNamestaj.Count + 1;
-                        namestaj.Id = Id;
-                        postojeciNamestaj.Add(namestaj);
-
-
-                        break;
-                    case Operacija.IZMENA:
-                        foreach (var n in postojeciNamestaj)
-                        {
-                            if (n.Id == namestaj.Id)
-                            {
-                                n.Naziv = namestaj.Naziv;
-                                n.Kolicina = namestaj.Kolicina;
-                                n.Cena = namestaj.Cena;
-                                n.TipN = namestaj.TipN;
-                                break;
-                            }
-                        }
-                        break;
-
-
-
-                }
-            }
+                Obrisan = false,
+            };
+            var akcija = new AkcijskiProzor(operacija, namestaj, akcijaa);
+            akcija.ShowDialog();
         }
     }
 }

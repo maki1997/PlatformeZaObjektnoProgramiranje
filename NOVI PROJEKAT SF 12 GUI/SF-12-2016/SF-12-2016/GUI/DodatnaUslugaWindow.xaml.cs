@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace SF_12_2016.GUI
 {
     /// <summary>
-    /// Interaction logic for DodatnaUsluga.xaml
+    /// Interaction logic for DodatnaUslugaWindow.xaml
     /// </summary>
     public partial class DodatnaUslugaWindow : Window
     {
@@ -49,9 +49,7 @@ namespace SF_12_2016.GUI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var Id = postojeciDU.Count + 1;
-                    dodatnaUsluga.Id = Id;
-                    postojeciDU.Add(dodatnaUsluga);
+                    DodatnaUsluga.Create(dodatnaUsluga);
                     break;
                 case Operacija.IZMENA:
                     foreach (var n in postojeciDU)
@@ -60,12 +58,13 @@ namespace SF_12_2016.GUI
                         {
                             n.Naziv = dodatnaUsluga.Naziv;
                             n.Cena = dodatnaUsluga.Cena;
+                            DodatnaUsluga.Update(n);
                             break;
                         }
                     }
                     break;
             }
-            GenericSerializer.Serialize("dodatnausluga.xml", postojeciDU);
+
 
             this.Close();
 

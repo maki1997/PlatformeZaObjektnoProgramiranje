@@ -20,22 +20,34 @@ namespace SF_12_2016.GUI
     /// </summary>
     public partial class GlavniProzor : Window
     {
-        public GlavniProzor(TipKorisnika tp)
+        public String ki;
+        public String p;
+        public Korisnik korisnik;
+        public GlavniProzor(String s1, String s2)
         {
             InitializeComponent();
-            OsveziPrikaz(tp);
+            this.ki = s1;
+            this.p = s2;
+            OsveziPrikaz();
             listBox.SelectedIndex = 0;
         }
-        private void OsveziPrikaz(TipKorisnika tp)
+        private void OsveziPrikaz()
         {
-            if (tp == TipKorisnika.Administrator)
+            foreach (var k in Projekat.Instance.korisnik)
+            {
+                if (ki.Equals(k.KorisnickoIme) && p.Equals(k.Lozinka))
+                    korisnik = k;
+            }
+            if (korisnik.TipKorisnika == TipKorisnika.Administrator)
             {
                 listBox.Items.Clear();
                 listBox.Items.Add("Rad sa namestajem");
                 listBox.Items.Add("Rad sa tipom namestaja");
                 listBox.Items.Add("Rad sa korisnicima");
                 listBox.Items.Add("Rad sa prodajom namestaja");
+                listBox.Items.Add("Rad sa akcijama");
                 listBox.Items.Add("Rad sa dodatnim uslugama");
+
             }
             else
             {
@@ -49,59 +61,36 @@ namespace SF_12_2016.GUI
             switch (selektovanaOperacija)
             {
                 case "Rad sa namestajem":
-                    var NProzor = new NamestajWindow(NamestajWindow.Rad.Namestaj);
+                    var NProzor = new NamestajWindow(NamestajWindow.Prikaz.Namestaj);
                     NProzor.ShowDialog();
                     break;
                 case "Rad sa tipom namestaja":
-                    var TNProzor = new NamestajWindow(NamestajWindow.Rad.TipNamestaja);
+                    var TNProzor = new NamestajWindow(NamestajWindow.Prikaz.TipNamestaja);
                     TNProzor.ShowDialog();
                     break;
                 case "Rad sa korisnicima":
-                    var KProzor = new NamestajWindow(NamestajWindow.Rad.Korisnik);
+                    var KProzor = new NamestajWindow(NamestajWindow.Prikaz.Korisnik);
                     KProzor.ShowDialog();
                     break;
 
                 case "Rad sa prodajom namestaja":
-                    var PNProzor = new NamestajWindow(NamestajWindow.Rad.ProdajaNamestaja);
-                    PNProzor.ShowDialog();
+                    var PNProzor = new NamestajWindow(NamestajWindow.Prikaz.ProdajaNamestaja);
+                    PNProzor.Show();
                     break;
-
+                case "Rad sa akcijama":
+                    var AProzor = new NamestajWindow(NamestajWindow.Prikaz.Akcija);
+                    AProzor.ShowDialog();
+                    break;
                 case "Rad sa dodatnim uslugama":
-                    var DProzor = new NamestajWindow(NamestajWindow.Rad.DodatneUsluge);
+                    var DProzor = new NamestajWindow(NamestajWindow.Prikaz.DodatneUsluge);
                     DProzor.ShowDialog();
                     break;
+
             }
         }
         private void Izlaz(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-        private void Button_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                var selektovanaOperacija = (String)listBox.SelectedItem;
-                switch (selektovanaOperacija)
-                {
-                    case "Rad sa namestajem":
-                        var NProzor = new NamestajWindow(NamestajWindow.Rad.Namestaj);
-                        NProzor.ShowDialog();
-                        break;
-                    case "Rad sa tipom namestaja":
-                        var TNProzor = new NamestajWindow(NamestajWindow.Rad.TipNamestaja);
-                        TNProzor.ShowDialog();
-                        break;
-                    case "Rad sa korisnicima":
-                        var KProzor = new NamestajWindow(NamestajWindow.Rad.Korisnik);
-                        KProzor.ShowDialog();
-                        break;
-
-                    case "Rad sa prodajom namestaja":
-                        var PNProzor = new NamestajWindow(NamestajWindow.Rad.ProdajaNamestaja);
-                        PNProzor.ShowDialog();
-                        break;
-                }
-            }
         }
     }
 }

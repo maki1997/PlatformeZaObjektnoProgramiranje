@@ -77,6 +77,14 @@
     <Compile Include="GUI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\RacunEdit.xaml.cs">
+      <DependentUpon>RacunEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RacunEditNamestajDU.xaml.cs">
+      <DependentUpon>RacunEditNamestajDU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\StavkaProdajeDU.cs" />
+    <Compile Include="Model\StavkaProdajeNamestaj.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="GUI\AkcijskiProzor.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +111,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\NamestajWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RacunEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RacunEditNamestajDU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

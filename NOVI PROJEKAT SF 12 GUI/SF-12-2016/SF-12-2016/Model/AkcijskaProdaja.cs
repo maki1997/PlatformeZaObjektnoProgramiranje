@@ -14,6 +14,17 @@ namespace SF_12_2016.Model
     [Serializable]
     public class AkcijskaProdaja : INotifyPropertyChanged
     {
+        public enum Prikaz
+        {
+            DatumPocetka,
+            DatumKraja,
+            Popust
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         {
@@ -49,8 +60,25 @@ namespace SF_12_2016.Model
             get { return obrisan; }
             set { obrisan = value; OnPropertyChanged("Obrisan"); }
         }
+        public object Clone()
+        {
+            return new AkcijskaProdaja()
+            {
+                id = Id,
+                obrisan = Obrisan,
+                dp = DatumPocetka,
+                dk = DatumKraja,
+                popust = Popust,
 
 
+            };
+        }
+        public AkcijskaProdaja()
+        {
+            DatumPocetka = DateTime.Today;
+            DatumKraja = DateTime.Today;
+
+        }
         public static AkcijskaProdaja GetById(int id)
         {
             foreach (var Akcija in Projekat.Instance.akcija)
@@ -79,87 +107,292 @@ namespace SF_12_2016.Model
         {
 
 
-            return $"Popust: {Popust} \n Datum pocetka:{DatumPocetka} \n Datum kraja{DatumKraja}";
+            return $"Popust: {Popust} ";
+        }
+        public static void AkcijeClean()
+        {
+            foreach (AkcijskaProdaja akcija in Projekat.Instance.akcija)
+            {
+                if (akcija.DatumKraja < DateTime.Now)
+                {
+
+                    AkcijskaProdaja.Delete(akcija);
+                }
+            }
         }
         #region Database
         public static ObservableCollection<AkcijskaProdaja> GetAll()
         {
-            var Akcije = new ObservableCollection<AkcijskaProdaja>();
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM AkcijskaProdaja WHERE Obrisan=0";
+                cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();
 
                 da.SelectCommand = cmd;
-                da.Fill(ds, "AkcijskaProdaja"); // Query se izvrsava
-                foreach (DataRow row in ds.Tables["AkcijskaProdaja"].Rows)
+                da.Fill(ds, "Akcija"); // Query se izvrsava
+                foreach (DataRow row in ds.Tables["Akcija"].Rows)
                 {
-                    var ap = new AkcijskaProdaja();
-                    ap.Id = int.Parse(row["Id"].ToString());
-                    ap.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
-                    ap.DatumKraja = DateTime.Parse(row["DatumKraja"].ToString());
-                    ap.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    Akcije.Add(ap);
+                    var a = new AkcijskaProdaja();
+                    a.Id = int.Parse(row["Id"].ToString());
+                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                    a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                    a.popust = int.Parse(row["Popust"].ToString());
+                    akcija.Add(a);
 
                 }
-                return Akcije;
+                return akcija;
             }
         }
-        public static AkcijskaProdaja Create(AkcijskaProdaja ap)
+        public static AkcijskaProdaja Create(AkcijskaProdaja a)
         {
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ToString()))
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 con.Open();
-
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"INSERT INTO AkcijskaProdaja (DatumPocetka,DatumKraja,Obrisan) VALUES (@DatumPocetka,@DatumKraja,@Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.CommandText = $"Insert into Akcija (Obrisan,Dp,Dk,Popust) Values(@Obrisan,@Dp,@Dk,@Popust);";
+                cmd.CommandText += "Select scope_identity();";
+                cmd.Parameters.AddWithValue("Dp", a.dp);
+                cmd.Parameters.AddWithValue("Dk", a.dk);
+                cmd.Parameters.AddWithValue("Popust", a.popust);
+                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+                int newId = int.Parse(cmd.ExecuteScalar().ToString()); //es izvrsava query
+                a.Id = newId;
 
-                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumKraja", ap.DatumKraja);
-                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
 
-                int newId = int.Parse(cmd.ExecuteScalar().ToString());   // izvrsava query
-                ap.Id = newId;
             }
-            Projekat.Instance.akcija.Add(ap);
-            return ap;
+            Projekat.Instance.akcija.Add(a);//obrati paznju {azurira i stanje modela}
+            return a;
         }
-        public static void Update(AkcijskaProdaja ap)
+        public static void Update(AkcijskaProdaja a)
         {
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ToString()))
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 con.Open();
-
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE AkcijskaProdaja SET DatumPocetka=@DatumPocetka,DatumKraja=@DatumKraja,Obrisan=@Obrisan WHERE Id=@Id";
-                cmd.Parameters.AddWithValue("DatumPocetka", ap.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumKraja", ap.DatumKraja);
-                cmd.Parameters.AddWithValue("Obrisan", ap.Obrisan);
-
+                cmd.CommandText = "Update Akcija set Dp=@Dp,Dk=@Dk,Popust=@Popust,Obrisan=@Obrisan where Id=@Id";
+                cmd.Parameters.AddWithValue("Id", a.Id);
+                cmd.Parameters.AddWithValue("Dp", a.dp);
+                cmd.Parameters.AddWithValue("Dk", a.dk);
+                cmd.Parameters.AddWithValue("Popust", a.popust);
+                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
 
                 cmd.ExecuteNonQuery();
 
-                foreach (var AkcijskaProdaja in Projekat.Instance.akcija)
+                foreach (var akcija in Projekat.Instance.akcija)
                 {
-                    if (AkcijskaProdaja.Id == ap.Id)
+                    if (akcija.Id == a.Id)
                     {
-                        AkcijskaProdaja.DatumPocetka = ap.DatumPocetka;
-                        AkcijskaProdaja.DatumKraja = ap.DatumKraja;
-                        AkcijskaProdaja.Obrisan = ap.Obrisan;
+                        akcija.dp = a.dp;
+                        akcija.dk = a.dk;
+                        akcija.popust = a.popust;
+                        akcija.Obrisan = a.Obrisan;
                         break;
                     }
                 }
             }
+
+
         }
-        public static void Delete(AkcijskaProdaja ap)
+        public static void Delete(AkcijskaProdaja a)
         {
-            ap.Obrisan = true;
-            Update(ap);
+            a.Obrisan = true;
+            Update(a);
+        }
+        public static ObservableCollection<AkcijskaProdaja> Sort(Prikaz p, NacinSortiranja nn)
+        {
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
+            switch (p)
+            {
+                case Prikaz.DatumKraja:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Dk";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Dk desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.DatumPocetka:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Dp";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Dp desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Popust:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Popust";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 Order by Popust desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+            }
+            return akcija;
+        }
+        public static ObservableCollection<AkcijskaProdaja> Search(Prikaz p, String s)
+        {
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
+            switch (p)
+            {
+                case Prikaz.DatumKraja:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Dk like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.DatumPocetka:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Dp like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Popust:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Popust like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+            }
+            return akcija;
         }
         #endregion
 

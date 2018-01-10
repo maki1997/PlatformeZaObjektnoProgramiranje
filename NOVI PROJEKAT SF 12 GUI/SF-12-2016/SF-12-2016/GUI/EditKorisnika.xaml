@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:SF_12_2016.GUI"
         mc:Ignorable="d"
         Title="EditKorisnika" Height="300" Width="300">
-    <Grid  KeyDown="Button_KeyDown">
-        <Grid.Background>
-            <ImageBrush ImageSource="D:\PlatformeZaObjektnoProgramiranje\NOVI PROJEKAT SF 12 GUI\SF-12-2016\SF-12-2016\Slike\user1.png"  Stretch="Fill"/>
-        </Grid.Background>
+    <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118"/>
             <ColumnDefinition Width="259"/>

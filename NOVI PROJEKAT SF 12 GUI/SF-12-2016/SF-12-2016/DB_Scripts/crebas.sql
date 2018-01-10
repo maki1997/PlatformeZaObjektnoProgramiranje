@@ -1,58 +1,68 @@
-﻿CREATE TABLE TipNamestaja (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	Naziv VARCHAR(80),
-	Obrisan BIT
+﻿
+Create table TipNamestaja (
+	Id int primary key IDENTITY (1, 1) ,
+	Naziv varchar(80),
+	Obrisan bit 
 )
-GO
 
-CREATE TABLE Namestaj (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	TipNamestajaId INT,
-	Naziv VARCHAR(100),
-	Cena NUMERIC(9,2),
-	Obrisan BIT,
-	Kolicina INT,
-	FOREIGN KEY (TipNamestajaId) REFERENCES TipNamestaja(Id)
+Create table Akcija(
+	Id int primary key IDENTITY (1, 1),
+	Dp datetime not null,
+	Dk datetime not null,
+	Popust int,
+	Obrisan bit,
+	
+
 )
-GO
-
-CREATE TABLE DodatnaUsluga (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	Naziv VARCHAR(100),
-	Cena NUMERIC(9,2),
-	Obrisan BIT
+Create table Namestaj(
+	Id int primary key IDENTITY (1, 1),
+	TipNamestajaId int, 
+	AkcijaId int,
+	Naziv varchar(80),
+	Obrisan bit ,
+	Cena numeric(9,2),
+	Kolicina int,
+	
+	
 )
-GO
 
-CREATE TABLE AkcijskaProdaja (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	DatumPocetka datetime,
-	DatumKraja datetime,
-	Obrisan BIT
+create table DodatnaUsluga(
+	Id int primary key IDENTITY (1, 1),
+	Naziv varchar(80),
+	Obrisan bit ,
+	Cena numeric(9,2),
+
 )
-GO
-
-CREATE TABLE Korisnik (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	Ime varchar(50),
-	Prezime varchar(50),
+create table Korisnik(
+	Id int primary key IDENTITY (1, 1),
+	Ime varchar(20),
+	Prezime varchar(40),
 	KorisnickoIme varchar(50),
 	Lozinka varchar(50),
-	Obrisan BIT
+	Obrisan bit,
+	TipKorisnika bit,
+)
+create table Racun(
+	Id int primary key IDENTITY (1, 1),
+	Dp datetime ,
+	Kupac varchar(100),
+	UkupnaCena numeric(9,2),
 )
 
-CREATE TABLE Salon (
-	Id INT PRIMARY KEY IDENTITY (1, 1),
-	Naziv VARCHAR(100),
-	Adresa VARCHAR(100),
-	Telefon VARCHAR(30),
-	EMAIL VARCHAR(50),
-	AdresaSajta VARHCAR(100),
-	PIB INT,
-	MaticniBroj INT,
-	BrojZiroRacuna VARCHAR (100)
-)
+create table StavkaNamestaja(
+	Id int primary key IDENTITY (1, 1),
+	RacunId int ,
+	NamestajID int,
+	Kolicina int,
+	 
 
+)
+create table StavkaDUsluge(
+	Id int primary key IDENTITY (1, 1),
+	RacunId int,
+	DUId int,
+
+)
 
 
 /*validacija*/
