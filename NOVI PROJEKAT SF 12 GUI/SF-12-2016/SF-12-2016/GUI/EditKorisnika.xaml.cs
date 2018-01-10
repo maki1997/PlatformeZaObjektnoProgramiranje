@@ -52,6 +52,32 @@ namespace SF_12_2016.GUI
         private void Sacuvaj_Korisnik(object sender, RoutedEventArgs e)
         {
             var korisnici = Projekat.Instance.korisnik;
+
+            if (tbIme.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli ime");
+                return; // return because we don't want to run normal code of buton click
+            }
+
+            if (tbKI.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli korisnicko ime");
+                return; // return because we don't want to run normal code of buton click
+            }
+
+
+
+            if (tbLozinka.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli lozinku");
+                return; // return because we don't want to run normal code of buton click
+            }
+
+            if (tbPrezime.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli prezime");
+                return; // return because we don't want to run normal code of buton click
+            }
             switch (operacija)
             {
                 case Operacija.DODAVANJE:

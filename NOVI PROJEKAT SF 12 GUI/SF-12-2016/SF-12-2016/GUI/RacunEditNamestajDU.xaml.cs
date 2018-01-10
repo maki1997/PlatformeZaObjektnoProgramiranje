@@ -61,6 +61,12 @@ namespace SF_12_2016.GUI
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
         {
+
+            if (tbKolicina.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli kolicinu");
+                return; // return because we don't want to run normal code of buton click
+            }
             switch (operacija)
             {
                 case Operacija.Namestaj:

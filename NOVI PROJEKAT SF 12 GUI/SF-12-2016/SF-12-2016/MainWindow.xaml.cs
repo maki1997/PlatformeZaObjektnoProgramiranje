@@ -49,7 +49,16 @@ namespace SF_12_2016
         private void Potvrdi(object sender, RoutedEventArgs e)
         {
 
-
+            if (tbKI.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli korisnicko ime");
+                return; // return because we don't want to run normal code of buton click
+            }
+            if (tbPass.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli lozinku");
+                return; // return because we don't want to run normal code of buton click
+            }
             if (Logovanje(tbKI.Text, tbPass.Text) == true)
             {
                 var gp = new GlavniProzor(tbKI.Text, tbPass.Text);
@@ -71,5 +80,6 @@ namespace SF_12_2016
         {
             this.Close();
         }
-    }
+
+}
 }

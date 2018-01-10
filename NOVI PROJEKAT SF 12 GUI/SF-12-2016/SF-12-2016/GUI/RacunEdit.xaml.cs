@@ -96,7 +96,11 @@ namespace SF_12_2016.GUI
         }
         private void btSacuvaj_Click(object sender, RoutedEventArgs e)
         {
-
+            if (tbKupac.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli naziv kupca");
+                return; // return because we don't want to run normal code of buton click
+            }
             switch (operacija)
             {
                 case Operacija.DODAVANJE:

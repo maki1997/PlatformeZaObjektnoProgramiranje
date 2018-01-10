@@ -46,6 +46,17 @@ namespace SF_12_2016.GUI
         {
             var postojeciDU = Projekat.Instance.dodaci;
 
+            if (tbNaziv.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli Naziv");
+                return; // return because we don't want to run normal code of buton click
+            }
+
+            if (tbCena.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli cenu");
+                return; // return because we don't want to run normal code of buton click
+            }
             switch (operacija)
             {
                 case Operacija.DODAVANJE:

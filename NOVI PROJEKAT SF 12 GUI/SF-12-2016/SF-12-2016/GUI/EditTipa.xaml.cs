@@ -44,7 +44,11 @@ namespace SF_12_2016.GUI
         private void btSacuvaj_Click(object sender, RoutedEventArgs e)
         {
             var postojeciTNamestaj = Projekat.Instance.tipovi;
-
+            if (tbNaziv.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli Naziv");
+                return; // return because we don't want to run normal code of buton click
+            }
             switch (operacija)
             {
                 case Operacija.DODAVANJE:

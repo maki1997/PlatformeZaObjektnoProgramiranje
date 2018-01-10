@@ -58,6 +58,22 @@ namespace SF_12_2016.GUI
         {
             var postojeciNamestaj = Projekat.Instance.namestaj;
 
+            if (tbNaziv.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli naziv");
+                return; // return because we don't want to run normal code of buton click
+            }
+            if (tbKuM.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli kolicinu");
+                return; // return because we don't want to run normal code of buton click
+            }
+            if (tbCena.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Niste uneli cenu");
+                return; // return because we don't want to run normal code of buton click
+            }
+
             switch (operacija)
             {
 
